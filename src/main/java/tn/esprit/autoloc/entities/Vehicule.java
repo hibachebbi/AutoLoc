@@ -10,6 +10,9 @@ import tn.esprit.autoloc.entities.enums.StatutVehicule;
 
 import java.math.BigDecimal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -32,4 +35,16 @@ public class Vehicule {
 
     @Enumerated(EnumType.STRING)
     private StatutVehicule statut;
+
+    @ManyToOne
+    private Agence agence;
+
+    @OneToMany(mappedBy = "vehicule")
+    private List<Reservation> reservations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "vehicule")
+    private List<Maintenance> maintenances = new ArrayList<>();
+
+    @ManyToMany
+    private List<Equipement> equipements = new ArrayList<>();
 }
